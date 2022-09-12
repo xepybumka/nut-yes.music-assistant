@@ -14,7 +14,7 @@
         <main role="main">
             <div class="jumbotron">
                 <div class="container">
-                    <h1 class="display-3">Music assistant</h1>
+                    <h1 class="display-3">{{$title}}</h1>
                 </div>
             </div>
             <div class="container">
