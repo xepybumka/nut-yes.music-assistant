@@ -8,19 +8,15 @@ class AlbumController extends Controller
 {
     public function all()
     {
-        $albumModel = new Album();
-        $albums = $albumModel->all();
+        $albums = Album::paginate('5');
         $title = 'Альбомы';
         return view(
-            'albums.all',
-            [
-                'title' => $title,
-                'albums' => $albums
-            ]
+            'album.all',
+            compact('title', 'albums')
         );
     }
 
-    public function get()
+    public function detail()
     {
 
     }

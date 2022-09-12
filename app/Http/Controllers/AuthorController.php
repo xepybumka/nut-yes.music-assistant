@@ -3,24 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\User;
 
 class AuthorController extends Controller
 {
     public function all()
     {
-        $authorModel = new Author();
-        $autors = $authorModel->all();
+        $authors = Author::paginate('5');
         $title = 'Авторы';
         return view(
             'author.all',
-            [
-                'title' => $title,
-                'authors' => $autors
-            ]
+            compact('title', 'authors')
         );
+
     }
 
-    public function get()
+    public function detail()
     {
 
     }
