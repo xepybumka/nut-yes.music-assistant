@@ -10,7 +10,6 @@ class AuthorController extends Controller
     {
         $authorModel = new Author();
         $autors = $authorModel->all();
-        var_dump($autors);
         $title = 'Авторы';
         return view(
             'author.all',
