@@ -3,10 +3,10 @@
     <div class="collapse navbar-collapse" id="navbarsDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('authors-all') }}">Исполнители</a>
+                <a class="nav-link" href="{{ route('authors.index') }}">Исполнители</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('albums-all') }}">Альбомы</a>
+                <a class="nav-link" href="{{ route('albums.index') }}">Альбомы</a>
             </li>
         </ul>
     </div>

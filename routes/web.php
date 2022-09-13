@@ -12,16 +12,23 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 //Albums
-Route::get('/albums', [AlbumController::class, 'all'])->name('albums-all');
-Route::get('/album/{id}', [AlbumController::class, 'get'])->name('album-detail');
-Route::get('/album/edit', [AlbumController::class, 'edit'])->name('album-edit');
-Route::get('/album/create/{id}', [AlbumController::class, 'create'])->name('album-create');
-Route::get('/album/delete/{id}', [AlbumController::class, 'delete'])->name('album-delete');
+Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
+Route::get('/albums/create', [AlbumController::class, 'create'])->name('albums.create');
+Route::post('/albums', [AlbumController::class, 'store'])->name('albums.store');
+Route::get('/albums/{id}', [AlbumController::class, 'show'])->name('albums.show');
+Route::get('/albums/{id}/edit/', [AlbumController::class, 'edit'])->name('albums.edit');
+Route::put('/albums/{id}/update/', [AlbumController::class, 'update'])->name('albums.update');
+Route::patch('/albums/{id}/update', [AlbumController::class, 'update'])->name('albums.update');
+Route::delete('/albums/{id}', [AlbumController::class, 'destroy'])->name('albums.delete');
 
 //Authors
-Route::get('/authors', [AuthorController::class, 'all'])->name('authors-all');
-Route::get('/author/{id}', [AuthorController::class, 'get'])->name('author-detail');
-Route::get('/author/edit/{id}', [AuthorController::class, 'edit'])->name('author-edit');
-Route::get('/author/create', [AuthorController::class, 'create'])->name('author-create');
-Route::get('/author/delete/{id}', [AuthorController::class, 'delete'])->name('author-delete');
+Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
+Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
+Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
+Route::get('/authors/{id}', [AuthorController::class, 'show'])->name('authors.show');
+Route::get('/authors/{id}/edit/', [AuthorController::class, 'edit'])->name('authors.edit');
+Route::put('/authors/{id}/update/', [AuthorController::class, 'update'])->name('authors.update');
+Route::patch('/authors/{id}/update', [AuthorController::class, 'update'])->name('authors.update');
+Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->name('authors.delete');
+
 require __DIR__.'/auth.php';

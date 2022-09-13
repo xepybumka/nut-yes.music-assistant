@@ -6,17 +6,33 @@ use App\Models\Album;
 
 class AlbumController extends Controller
 {
-    public function all()
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+    }
+
+    public function index()
     {
         $albums = Album::paginate('5');
         $title = 'Альбомы';
         return view(
-            'album.all',
+            'album.index',
             compact('title', 'albums')
         );
     }
 
-    public function detail()
+    public function create()
+    {
+
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function show()
     {
 
     }
@@ -26,12 +42,12 @@ class AlbumController extends Controller
 
     }
 
-    public function create()
+    public function update()
     {
 
     }
 
-    public function delete()
+    public function destroy()
     {
 
     }
