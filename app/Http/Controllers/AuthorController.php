@@ -3,22 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
-use App\Models\User;
 
 class AuthorController extends Controller
 {
-    public function all()
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+    }
+
+    public function index()
     {
         $authors = Author::paginate('5');
         $title = 'Авторы';
         return view(
-            'author.all',
+            'author.index',
             compact('title', 'authors')
         );
 
     }
 
-    public function detail()
+    public function create()
+    {
+
+    }
+
+    public function store()
+    {
+
+    }
+
+    public function show()
     {
 
     }
@@ -28,12 +43,12 @@ class AuthorController extends Controller
 
     }
 
-    public function create()
+    public function update()
     {
 
     }
 
-    public function delete()
+    public function destroy()
     {
 
     }
