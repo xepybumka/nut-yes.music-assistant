@@ -6,6 +6,13 @@
 
 @section('content')
     {{ $albums->links('components.main.pagination') }}
+    <form class="form-inline" method="GET">
+        <div class="form-group mb-2">
+            <label for="filter" class="col-sm-2 col-form-label">Filter</label>
+            <input type="text" class="form-control" id="filter" name="filter" placeholder="Album title..." value="{{$filter}}">
+        </div>
+        <button type="submit" class="btn btn-default mb-2">Filter</button>
+    </form>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -28,7 +35,7 @@
                                 </td>
                                 <td>{{$album->name}}</td>
                                 <td>{{$album->description}}</td>
-                                <td>{{$album->author_id}}</td>
+                                <td>{{$album->author->name}}</td>
                             </tr>
                         @endforeach
                     </tbody>

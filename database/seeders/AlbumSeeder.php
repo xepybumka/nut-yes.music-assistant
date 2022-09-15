@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Album;
-use App\Models\Author;
 use Illuminate\Database\Seeder;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class AlbumSeeder extends Seeder
 {
