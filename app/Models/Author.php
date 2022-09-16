@@ -13,4 +13,9 @@ class Author extends Model
         'name',
         'image'
     ];
+
+    public function albums()
+    {
+        return $this->hasMany(Author::class, 'user_id', 'id');
+    }
 }

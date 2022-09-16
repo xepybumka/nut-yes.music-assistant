@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Author;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,8 @@ class CreateAlbumsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->integer('author_id');
+            $table->foreignId('author_id')->references('id')->on('authors');
+            $table->foreignIdFor(Author::class,'user_id');
             $table->string('image');
             $table->timestamps();
         });

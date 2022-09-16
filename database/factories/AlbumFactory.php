@@ -17,6 +17,7 @@ class AlbumFactory extends Factory
             'name' => $this->faker->name(),
             'description' => $this->faker->name(),
             'image' => $this->faker->image(storage_path('app/public/images')),
+            'author_id' => $this->faker->numberBetween(1, 10),
             'created_at' => $this->faker->dateTime(),
             'updated_at' => $this->faker->dateTime()
         ];
