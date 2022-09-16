@@ -16,6 +16,6 @@ class Author extends Model
 
     public function albums()
     {
-        return $this->hasMany(Author::class, 'user_id', 'id');
+        return $this->hasMany(Album::class, 'author_id', 'id');
     }
 }

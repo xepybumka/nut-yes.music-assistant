@@ -6,13 +6,14 @@ use App\Models\Album;
 use App\Models\Author;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AlbumsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')
-            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+//        $this->middleware('auth')
+//            ->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     /**
@@ -45,18 +46,28 @@ class AlbumsController extends Controller
      */
     public function create()
     {
-        //
+        $authors = DB::table('authors')->get();
+        $title = 'Добавление альбома';
+        return view('album.create')
+            ->with('title', $title)
+            ->with('authors', $authors);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $album = new Album();
+        $album->name = $request->name;
+        $album->description = $request->description;
+        $album->author_id = $request->author_id;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $album->image = $path;
+        }
+        $album->save();
+        return back()->withInput()->with('success', 'Запись успешно добавлена');
     }
 
     /**

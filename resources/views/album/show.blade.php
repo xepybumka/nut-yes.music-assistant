@@ -5,7 +5,12 @@
 @endsection
 
 @section('content')
-    @include('components.main.content')
+    <div>
+        <h1>{{$album->name}}</h1>
+        <div>
+            <img src="{{asset('storage').'/'.$album->image}}" class="img-fluid img-thumbnail">
+        </div>
+    </div>
 @endsection
 
 @section('footer')
