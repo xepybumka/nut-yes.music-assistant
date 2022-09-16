@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use App\Models\Author;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -64,13 +65,14 @@ class AuthorsController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $author = Author::find($id);
+        $title = 'Детальная страница'.$author->name;
+        return view('author.show')
+            ->with('title', $title)
+            ->with('author', $author);
     }
 
     /**
