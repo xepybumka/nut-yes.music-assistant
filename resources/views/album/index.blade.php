@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+    <div>
+        <a href="{{ route('albums.create') }}">Добавить альбом</a>
+    </div>
     {{ $albums->links('components.main.pagination') }}
     <form class="form-inline" method="GET">
         <div class="form-group mb-2">
@@ -31,7 +34,7 @@
                             <tr>
                                 <th scope="row">{{$album->id}}</th>
                                 <td class="w-25">
-                                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg" class="img-fluid img-thumbnail" alt="Sheep">
+                                    <img src="{{asset('storage').'/'.$album->image}}" class="img-fluid img-thumbnail">
                                 </td>
                                 <td>{{$album->name}}</td>
                                 <td>{{$album->description}}</td>

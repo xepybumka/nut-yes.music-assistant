@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Album;
 use App\Models\Author;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -11,8 +10,8 @@ class AuthorsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')
-            ->only(['create', 'store', 'edit', 'update', 'destroy']);
+//        $this->middleware('auth')
+//            ->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     /**
@@ -39,22 +38,28 @@ class AuthorsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|View|\Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $title = 'Добавление автора';
+        return view('author.create')
+            ->with('title', $title);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $author = new Author();
+        $author->name = $request->name;
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $author->image = $path;
+        }
+        $author->save();
+        return back()->withInput()->with('success', 'Запись успешно добавлена');
     }
 
     /**
