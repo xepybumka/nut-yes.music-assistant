@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+    <div class="container">
+        @if(session('success')) <h1 class="text-center"><strong> {{session('success')}} </strong></h1>@endif
+    </div>
     <div>
         <h1>{{$author->name}}</h1>
         <div>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Album;
 use App\Models\Author;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -75,25 +74,39 @@ class AuthorsController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $author = Author::find($id);
+        $title = 'Обновление записи автора: '.$author->name;
+        return view('author.edit')
+            ->with('title', $title)
+            ->with('author', $author);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $hasNewField = false;
+        $author = Author::find($id);
+        if ($author->name !== $request->name) {
+            $author->name = $request->name;
+            $hasNewField = true;
+        }
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $author->image = $path;
+            $hasNewField = true;
+        }
+        if ($hasNewField) {
+            $author->update();
+            return redirect(route('authors.show', ['id' => $id]))->with(['success' => 'Запись успешно обновлена!']);
+        } else {
+            return redirect(route('authors.show', ['id' => $id]));
+        }
     }
 
     /**
