@@ -12,7 +12,7 @@
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="name">Обновление записи автора: {{$author->name}}</label>
+            <label for="name">Наименование автора: {{$author->name}}</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Имя/название автора" value="{{$author->name}}">
         </div>
         <div class="form-group">

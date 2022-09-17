@@ -81,25 +81,51 @@ class AlbumsController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $album = Album::find($id);
+        $title = 'Обновление записи альбома: '.$album->name;
+        $authors = DB::table('authors')->get();
+        return view('album.edit')
+            ->with('title', $title)
+            ->with('authors', $authors)
+            ->with('album', $album);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $hasNewField = false;
+        $album = Album::find($id);
+        if ($album->name !== $request->name) {
+            $album->name = $request->name;
+            $hasNewField = true;
+        }
+
+        if ($album->description !== $request->description) {
+            $album->description = $request->description;
+            $hasNewField = true;
+        }
+
+        if ($album->author_id !== $request->author_id) {
+            $album->author_id = $request->author_id;
+            $hasNewField = true;
+        }
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $album->image = $path;
+            $hasNewField = true;
+        }
+        if ($hasNewField) {
+            $album->update();
+            return redirect(route('albums.show', ['id' => $id]))->with(['success' => 'Запись успешно обновлена!']);
+        } else {
+            return redirect(route('albums.show', ['id' => $id]));
+        }
     }
 
     /**
