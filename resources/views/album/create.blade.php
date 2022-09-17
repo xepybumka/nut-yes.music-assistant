@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
-    @if(session('success')) <strong> {{session('success')}} </strong>@endif
+    <div class="container">
+        @if(session('success')) <strong> {{session('success')}} </strong>@endif
+    </div>
     <form method="post" action="{{route('albums.store')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">

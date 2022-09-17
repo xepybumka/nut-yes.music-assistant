@@ -8,6 +8,7 @@
     <div class="container">
         @if(session('success')) <strong> {{session('success')}} </strong>@endif
     </div>
+    <hr>
     <form method="post" action="{{route('albums.update', ['id'=>$album->id])}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -41,6 +42,14 @@
         </div>
         <button type="submit" class="btn btn-primary">Обновить альбом</button>
     </form>
+    <hr>
+    <div class="container">
+        <form method="post" action="{{route('albums.delete', ['id'=>$album->id])}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Удалить</button>
+        </form>
+    </div>
 @endsection
 
 @section('footer')
