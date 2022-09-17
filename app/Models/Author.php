@@ -16,6 +16,6 @@ class Author extends Model
 
     public function albums()
     {
-        return $this->hasMany(Album::class, 'author_id', 'id');
+        return $this->hasMany(Album::class, 'author_id', 'id')->onDelete("cascade");
     }
 }

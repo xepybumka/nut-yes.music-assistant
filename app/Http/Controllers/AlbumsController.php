@@ -130,12 +130,12 @@ class AlbumsController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $album = Album::find($id);
+        $album->author->delete();
+        $album->delete();
+        return redirect(route('albums.index', ['id' => $id]))->with(['success' => 'Запись успешно удалена!']);
     }
 }
