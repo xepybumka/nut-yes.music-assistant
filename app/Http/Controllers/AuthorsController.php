@@ -38,8 +38,6 @@ class AuthorsController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -69,7 +67,7 @@ class AuthorsController extends Controller
     public function show($id)
     {
         $author = Author::find($id);
-        $title = 'Детальная страница'.$author->name;
+        $title = 'Детальная страница: '.$author->name;
         return view('author.show')
             ->with('title', $title)
             ->with('author', $author);

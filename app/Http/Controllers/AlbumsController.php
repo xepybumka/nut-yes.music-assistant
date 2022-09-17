@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
-use App\Models\Author;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,8 +40,6 @@ class AlbumsController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -72,13 +69,14 @@ class AlbumsController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $album = Album::find($id);
+        $title = 'Детальная страница: '.$album->name;
+        return view('album.show')
+            ->with('title', $title)
+            ->with('album', $album);
     }
 
     /**
