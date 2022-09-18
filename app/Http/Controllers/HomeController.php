@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 class HomeController extends Controller
 {
-    public function index()
+    public function index(User $user)
     {
-        return view('home', ['title' => 'Главная страница']);
+        $title = "Главная страница";
+        return view('home')
+            ->with('title', $title)
+            ->with('user', $user);
     }
 }
