@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return redirect('/');
+});
 
 //Albums
 Route::get('/albums', [AlbumsController::class, 'index'])->name('albums.index');

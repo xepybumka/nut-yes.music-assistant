@@ -1,9 +1,6 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
         </x-slot>
 
         <!-- Session Status -->
@@ -50,6 +47,11 @@
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
+            </div>
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                    {{ __('Do you want to register?') }}
+                </a>
             </div>
         </form>
     </x-auth-card>
